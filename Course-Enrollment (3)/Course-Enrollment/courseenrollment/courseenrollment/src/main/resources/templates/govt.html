@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Government Document Submission</title>
+  <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f4f4f9;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.5) 50%), url('img.jpg');
+      background-position: center;
+      background-size: cover;
+    }
+
+    .container {
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.8) 50%);
+      padding: 25px;
+      border-radius: 10px;
+      width: 350px;
+      position: relative;
+      text-align: center;
+    }
+
+    .container h3 {
+      font-size: 22px;
+      color: #0ad3f7;
+      margin-bottom: 20px;
+    }
+
+    form input, form button, form label {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      margin-top: 15px;
+      border: 1px solid #0ad3f7;
+      background: transparent;
+      color: #fff;
+      font-family: sans-serif;
+    }
+
+    form input[type="file"] {
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    form button {
+      background-color: #0ad3f7;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    form button:hover {
+      background-color: #fff;
+      color: #0ad3f7;
+    }
+
+    ::placeholder {
+      color: #fff;
+    }
+
+    .upload-label {
+      color: white;
+    }
+
+    .id-type-dropdown {
+      color: black;
+    }
+
+    .id-type-dropdown option {
+      color: black;
+    }
+
+    /* Styling for label and inputs */
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input[type="file"] {
+      font-size: 14px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <i class='bx bxs-id-card' style="font-size: 36px; color: #0ad3f7; display: block; text-align: center; margin-bottom: 10px;"></i>
+  <h3>Government Document Submission</h3>
+  <form action="/govt/submit" method="post" enctype="multipart/form-data">
+    <!-- Name -->
+    <div class="form-group">
+      <input type="text" name="name" placeholder="Full Name" required>
+    </div>
+
+    <!-- Date -->
+    <div class="form-group">
+      <input type="date" name="date" id="submission_date" required>
+    </div>
+
+    <!-- PAN Card Upload -->
+    <div class="form-group">
+      <label for="pan_card" class="upload-label">Upload PAN Card</label>
+      <input type="file" name="pan_card" id="pan_card" accept=".jpg, .jpeg, .png, .pdf" required>
+    </div>
+
+    <!-- Aadhar Card Upload -->
+    <div class="form-group">
+      <label for="aadhar_card" class="upload-label">Upload Aadhar Card</label>
+      <input type="file" name="aadhar_card" id="aadhar_card" accept=".jpg, .jpeg, .png, .pdf" required>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit">Submit Documents</button>
+  </form>
+</div>
+
+<script>
+  // Automatically set today's date in the date input field
+  window.onload = function() {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    let mm = today.getMonth() + 1; // Months are 0-based
+    let dd = today.getDate();
+
+    if (mm < 10) mm = '0' + mm; // Add leading zero for single digit months
+    if (dd < 10) dd = '0' + dd; // Add leading zero for single digit days
+
+    const currentDate = yyyy + '-' + mm + '-' + dd;
+    document.getElementById('submission_date').value = currentDate;
+  };
+</script>
+
+</body>
+</html>

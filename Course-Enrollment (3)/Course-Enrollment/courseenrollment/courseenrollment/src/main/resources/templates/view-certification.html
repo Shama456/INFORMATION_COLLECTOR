@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Certification Details</title>
+</head>
+<body>
+<h1>Certification Details</h1>
+<div>
+    <p><strong>Course Title:</strong> <span th:text="${certification.courseTitle}"></span></p>
+    <p><strong>Issuing Organization:</strong> <span th:text="${certification.issuingOrganization}"></span></p>
+    <p><strong>Date of Completion:</strong> <span th:text="${certification.completionDate}"></span></p>
+    <p><strong>Certification Number:</strong> <span th:text="${certification.certificationNumber}"></span></p>
+    <a th:href="@{/admin/download-certification/{id}(id=${certification.id})}">Download Certification</a>
+</div>
+</body>
+</html>

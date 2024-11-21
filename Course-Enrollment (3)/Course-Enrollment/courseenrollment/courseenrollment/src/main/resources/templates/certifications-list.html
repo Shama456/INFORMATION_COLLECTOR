@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Certifications List</title>
+</head>
+<body>
+<h1>List of Certifications</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Course Title</th>
+        <th>Issuing Organization</th>
+        <th>Date of Completion</th>
+        <th>Certification Number</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="certification : ${certifications}">
+        <td th:text="${certification.courseTitle}"></td>
+        <td th:text="${certification.issuingOrganization}"></td>
+        <td th:text="${certification.completionDate}"></td>
+        <td th:text="${certification.certificationNumber}"></td>
+        <td>
+            <a th:href="@{/admin/view-certification/{id}(id=${certification.id})}">View</a> |
+            <a th:href="@{/admin/download-certification/{id}(id=${certification.id})}">Download</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

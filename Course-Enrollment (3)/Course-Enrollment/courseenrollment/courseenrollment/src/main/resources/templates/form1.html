@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Document Upload</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f4f4f9;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.5) 50%), url('img.jpg');
+            background-position: center;
+            background-size: cover;
+        }
+
+        /* Form Container */
+        .container {
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.8) 50%);
+            padding: 25px;
+            border-radius: 10px;
+            width: 350px;
+            position: relative;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Heading Style */
+        .container h3 {
+            font-size: 22px;
+            color: #0ad3f7;
+            margin-bottom: 20px;
+            font-family: sans-serif;
+        }
+
+        /* Form Input Styles */
+        .form input, .form select, .form button {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            margin-top: 15px;
+            border: 1px solid #0ad3f7;
+            background: transparent;
+            color: #fff;
+            font-family: sans-serif;
+            border-radius: 5px;
+        }
+
+        /* Focused Input Styling */
+        .form input:focus, .form select:focus {
+            outline: none;
+            border-color: #ff7200; /* Focus color */
+        }
+
+        /* File Upload Fields */
+        .file-upload {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .upload-label {
+            color: white;
+            font-size: 14px;
+        }
+
+        /* Submit Button Styling */
+        .form button {
+            background-color: #0ad3f7;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .form button:hover {
+            background-color: #fff;
+            color: #0ad3f7;
+        }
+
+        /* Placeholder Styling */
+        ::placeholder {
+            color: #fff;
+        }
+
+        /* Success/Error Message */
+        .form p {
+            text-align: center;
+            font-size: 16px;
+            color: white;
+            margin-top: 15px;
+        }
+
+        /* Styling for Links */
+        .form p a {
+            text-decoration: none;
+            color: #ff7200;
+            font-weight: bold;
+        }
+
+        /* Icons Section Styling */
+        .icons a {
+            text-decoration: none;
+            color: #fff;
+            padding-left: 14px;
+            padding-top: 5px;
+            transition: 0.3s ease;
+        }
+
+        .icons ion-icon {
+            font-size: 30px;
+            color: #fff;
+            transition: 0.3s ease;
+        }
+
+        .icons ion-icon:hover {
+            color: #ff7200;
+        }
+
+        /* ID Type Dropdown Styling */
+        .id-type-dropdown {
+            color: black; /* For the selected option */
+        }
+
+        .id-type-dropdown option {
+            color: black; /* For the dropdown options */
+        }
+        .success-message {
+    color: white;
+    font-size: 16px;  /* Optional: you can adjust the size */
+    text-align: center;
+    margin-top: 15px;
+}
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h3>Digital Document Upload</h3>
+    <form action="/document/upload" method="post" enctype="multipart/form-data" class="form">
+        <!-- Document Name -->
+        <input type="text" name="name" placeholder="Student Name" required>
+        <input type="text" name="name" placeholder="Document(12th/10th Marks Sheet)" required>
+
+        <!-- Document Description -->
+        <input type="text" name="description" placeholder="Percentage/CGPA" required>
+
+        <!-- File Upload for Document -->
+        <div class="file-upload">
+            <label for="document_file" class="upload-label">Upload Document (PDF/Image)</label>
+            <input type="file" name="document_file" id="document_file" accept=".pdf, .jpg, .jpeg, .png" required>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit">Upload Document</button>
+    </form>
+
+    <!-- Success/Message Block (Optional) -->
+
+    <p th:text="${message}" class="success-message"></p>
+
+</div>
+
+<!-- IonIcons for Social Links or Icons -->
+<script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+
+<script>
+    // Automatically set today's date in the date input field
+    window.onload = function() {
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      let mm = today.getMonth() + 1; // Months are 0-based
+      let dd = today.getDate();
+
+      if (mm < 10) mm = '0' + mm; // Add leading zero for single digit months
+      if (dd < 10) dd = '0' + dd; // Add leading zero for single digit days
+
+      const currentDate = yyyy + '-' + mm + '-' + dd;
+      document.getElementById('submission_date').value = currentDate;
+    };
+</script>
+
+</body>
+</html>

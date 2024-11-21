@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+  <title>AdminHub</title>
+  <style>
+    body {
+font-family: 'Poppins', sans-serif;
+background-image: url('/img/img.jpg');
+margin: 0;
+padding: 0;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+background-image: url('img.jpg'); /* Background image */
+background-size: cover; /* Ensure the image covers the entire viewport */
+background-position: center; /* Center the background image */
+background-repeat: no-repeat; /* Avoid repeating the image */
+}
+
+
+    ul.box-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        list-style: none;
+        padding: 0;
+        justify-content: center;
+        align-items: center;
+    }
+
+    ul.box-info li {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 300px; /* Set fixed width */
+        height: 150px; /* Set fixed height for proper alignment */
+        position: relative; /* For dropdown positioning */
+    }
+
+    ul.box-info li i {
+        font-size: 36px;
+        margin-bottom: 10px;
+        color: #1e90ff;
+    }
+
+    ul.box-info li .text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    ul.box-info li .text h3 {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .btn-primary {
+        padding: 10px 20px;
+        color: #080808;
+        background-color: transparent;
+        border: 2px solid #1e90ff;
+        border-radius: 8px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #1e90ff;
+        color: #fff;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #ffffff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        z-index: 1000;
+        width: 100%; /* Matches parent width */
+    }
+
+    .dropdown-content a {
+        color: #333;
+        padding: 10px;
+        display: block;
+        text-decoration: none;
+        font-size: 14px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #f4f4f9;
+    }
+
+    .dropdown-content a:last-child {
+        border-bottom: none;
+    }
+
+    .btn-primary {
+        text-decoration: none; /* Removes underline */
+        display: inline-block; /* Makes it behave like a button */
+        padding: 10px 20px;
+        color: #080808;
+        background-color: transparent;
+        border: 2px solid #1e90ff;
+        border-radius: 8px;
+        font-size: 14px;
+        cursor: pointer;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #1e90ff;
+        color: #fff;
+    }
+  </style>
+</head>
+<body>
+<section id="content">
+  <main>
+    <ul class="box-info">
+      <li>
+        <i class='bx bxs-calendar-check'></i>
+        <span class="text">
+                        <h3>Document Approval Form</h3>
+                       <a href="/form1" class="btn btn-primary">Fill Form</a>
+
+                    </span>
+      </li>
+      <li>
+        <i class='bx bxs-group'></i>
+        <span class="text">
+                        <h3> E-signature Submission Form</h3>
+                        <a href="/e-sign" class="btn btn-primary">Fill Form</a>
+                    </span>
+      </li>
+      <li>
+        <i class='bx bxs-dollar-circle'></i>
+        <span class="text">
+                        <h3> Government ID Upload Form</h3>
+                        <a href="/govt" class="btn btn-primary">Fill Form</a>
+                    </span>
+      </li>
+    </ul>
+  </main>
+</section>
+<script>
+  // Toggle dropdown menu
+  document.querySelectorAll('.dropdown-btn').forEach(button => {
+      button.addEventListener('click', function (event) {
+          event.preventDefault();
+
+          // Get the dropdown content next to the button
+          const dropdown = this.nextElementSibling;
+
+          // Toggle dropdown visibility
+          dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+
+          // Close other dropdowns
+          document.querySelectorAll('.dropdown-content').forEach(otherDropdown => {
+              if (otherDropdown !== dropdown) {
+                  otherDropdown.style.display = 'none';
+              }
+          });
+      });
+  });
+
+  // Close dropdown if clicked outside
+  document.addEventListener('click', function (event) {
+      if (!event.target.closest('.dropdown-btn')) {
+          document.querySelectorAll('.dropdown-content').forEach(dropdown => {
+              dropdown.style.display = 'none';
+          });
+      }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-signature Submission Form</title>
+  <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet">
+  <style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: #f4f4f9;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.5) 50%), url('img.jpg');
+        background-position: center;
+        background-size: cover;
+    }
+
+    .container {
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.8) 50%);
+        padding: 25px;
+        border-radius: 10px;
+        width: 350px;
+        position: relative;
+        top: -20px;
+        text-align: center;
+    }
+
+    .container h3 {
+        font-size: 22px;
+        text-align: center;
+        color: #0ad3f7;
+        font-family: sans-serif;
+        margin-bottom: 20px;
+    }
+
+    form input, form button, form label {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+        margin-top: 15px;
+        border: 1px solid #0ad3f7;
+        background: transparent;
+        color: #fff;
+        font-family: sans-serif;
+    }
+
+    form input[type="file"] {
+        padding: 8px;
+    }
+
+    form button {
+        background-color: #0ad3f7;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    form button:hover {
+        background-color: #fff;
+        color: #0ad3f7;
+    }
+
+    ::placeholder {
+        color: #fff;
+    }
+
+    .upload-label {
+        color: white;
+    }
+
+    .id-type-dropdown {
+        color: black;
+    }
+
+    .id-type-dropdown option {
+        color: black;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <i class='bx bxs-signature' style="font-size: 36px; color: #0ad3f7; display: block; text-align: center; margin-bottom: 10px;"></i>
+  <h3>E-signature Submission</h3>
+  <form action="/e-sign/submit" method="POST" enctype="multipart/form-data">
+
+  <!-- Name -->
+    <input type="text" name="name" placeholder="Full Name" required>
+
+    <!-- Signature File Upload -->
+
+    <input type="file" name="signature_file" id="signature_file" accept=".jpg, .jpeg, .png, .pdf" required>
+
+    <!-- Date -->
+    <input type="date" name="date" id="submission_date" readonly>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary">Submit Signature</button>
+  </form>
+</div>
+
+<script>
+  // Automatically set today's date in the date input field
+  window.onload = function() {
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      let mm = today.getMonth() + 1; // Months are 0-based
+      let dd = today.getDate();
+
+      if (mm < 10) mm = '0' + mm; // Add leading zero for single digit months
+      if (dd < 10) dd = '0' + dd; // Add leading zero for single digit days
+
+      const currentDate = yyyy + '-' + mm + '-' + dd;
+      document.getElementById('submission_date').value = currentDate;
+  };
+</script>
+</body>
+</html>
